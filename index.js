@@ -2,6 +2,8 @@
 ((module) => {
 	'use strict';
 
+	var Tuple = require('./tuple.js');
+
 	const RETURN = (x) => x;
 
 	var _getfunc = (fn, ...fnlist) =>
@@ -18,6 +20,15 @@
 	var tryCatch = (...fnlist) =>
 		_tryCatch(...fnlist.map((fn) => _getfunc(fn, RETURN)));
 
-	module.exports = (act, onsuccess, onerror) => tryCatch(act, onsuccess, onerror);
+	var main = module.exports = (act, onsuccess, onerror) => tryCatch(act, onsuccess, onerror);
+
+	Object.setPrototypeOf(main, {
+		tuple(act) {
+			var result = new Tuple(null, null);
+			main(act, (error) => result.error = error, (value) => result.value = value);
+			return result;
+		},
+		__proto__() {}
+	});
 
 })(module);
