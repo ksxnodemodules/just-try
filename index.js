@@ -25,7 +25,7 @@
 	Object.setPrototypeOf(main, {
 		tuple(act) {
 			var result = new Tuple(null, null);
-			main(act, (error) => result.error = error, (value) => result.value = value);
+			_tryCatch(act, (error) => result.error = error, (value) => result.value = value);
 			return result;
 		},
 		__proto__() {}
