@@ -17,10 +17,7 @@
 		}
 	};
 
-	var tryCatch = (...fnlist) =>
-		_tryCatch(...fnlist.map((fn) => _getfunc(fn, RETURN)));
-
-	var main = module.exports = (act, onerror, onsuccess) => tryCatch(act, onerror, onsuccess);
+	var main = module.exports = (act = RETURN, onerror = RETURN, onsuccess = RETURN) => _tryCatch(act, onerror, onsuccess);
 
 	Object.setPrototypeOf(main, {
 		tuple(act) {
