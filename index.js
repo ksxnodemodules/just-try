@@ -1,7 +1,7 @@
 ((module) => {
   'use strict';
   const Tuple = require('./tuple.js');
-  const RETURN = (x) => x;
+  const RETURN = x => x;
 
   const _getfunc = (fn, ...fnlist) =>
     typeof fn === 'function' ? fn : _getfunc(...fnlist);
@@ -18,13 +18,9 @@
     (act = RETURN, onerror = RETURN, onsuccess = RETURN) =>
       _tryCatch(act, onerror, onsuccess);
 
-  Object.setPrototypeOf(main, {
-    tuple(act) {
-      const result = new Tuple(null, null);
-      _tryCatch(act, error => result.error = error, value => result.value = value);
-      return result;
-    },
-
-    __proto__() {}
-  });
+  main.tuple = act => _tryCatch(
+    act,
+    error => new Tuple(error, null),
+    value => new Tuple(null, value)
+  )
 })(module);
