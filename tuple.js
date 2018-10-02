@@ -1,39 +1,33 @@
-
 ((module) => {
-    'use strict';
+  'use strict';
+  const ERROR = 0;
+  const VALUE = 1;
 
-    const ERROR = 0;
-    const VALUE = 1;
+  class TryCatchTuple extends Array {
+    get error() {
+      return this[ERROR];
+    }
 
-	class TryCatchTuple extends Array {
+    set error(error) {
+      this[ERROR] = error;
+    }
 
-        get error() {
-        	return this[ERROR];
-        }
+    get value() {
+      return this[VALUE];
+    }
 
-        set error(error) {
-            this[ERROR] = error;
-        }
+    set value(value) {
+      this[VALUE] = value;
+    }
 
-		get value() {
-			return this[VALUE];
-		}
+    static get ERROR() {
+      return ERROR;
+    }
 
-        set value(value) {
-            this[VALUE] = value;
-        }
+    static get VALUE() {
+      return VALUE;
+    }
+  }
 
-        static get ERROR() {
-            return ERROR;
-        }
-
-        static get VALUE() {
-            return VALUE;
-        }
-
-	}
-
-    module.exports = class extends TryCatchTuple {};
-
-
+  module.exports = class extends TryCatchTuple {};
 })(module);
