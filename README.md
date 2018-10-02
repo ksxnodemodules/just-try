@@ -3,7 +3,7 @@
 
 ## Requirements
 
- * Node >= 6.0.0
+* Node >= 6.0.0
 
 ## Usage
 
