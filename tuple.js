@@ -4,6 +4,10 @@
   const VALUE = 1;
 
   class TryCatchTuple extends Array {
+    constructor (error, value) {
+      super(error, value)
+    }
+
     get error() {
       return this[ERROR];
     }

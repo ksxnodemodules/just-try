@@ -6,6 +6,7 @@ declare class TryCatchTuple<Error, Value> extends Array {
   readonly value: Value
   readonly [TryCatchTuple.ERROR]: Error
   readonly [TryCatchTuple.VALUE]: Value
+  constructor (error: Error, value: Value)
 }
 
 export = TryCatchTuple
